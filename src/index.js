@@ -20,21 +20,42 @@ const books = [
 function BookList() {
   return (
     <section className="bookList">
+      <EventExamples />
       {books.map((book) => {
-        console.log(book)
-        const { img, title, author } = book
-
-        return <Book img={img} title={title} author={author} />
+        return <Book {...book} key={book.id} />
       })}
     </section>
   )
 }
 
-const Book = ({ img, author, title, children }) => {
+const EventExamples = () => {
+  const handleFormInput = () => {
+    console.log('handle form input')
+  }
+  const handleButtonClick = () => {
+    alert('handle button click')
+  }
+  return (
+    <section>
+      <form>
+        <h2>Typical Form</h2>
+        <input
+          type="text"
+          name="example"
+          onChange={handleFormInput}
+          style={{ margin: '1rem 0' }}
+        />
+        <button onClick={handleButtonClick}>Click Me</button>
+      </form>
+    </section>
+  )
+}
+
+const Book = ({ img, author, title }) => {
+  // const  = props
   return (
     <article className="book">
       <img src={img} alt={title} />
-      {children}
       <h2>{title}</h2>
       <h4>{author}</h4>
     </article>
